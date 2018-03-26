@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  megastore.web:
+    image: megastoreweb
+    build:
+      context: .
+      dockerfile: MegaStore.Web\Dockerfile
