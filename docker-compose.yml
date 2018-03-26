@@ -1,8 +1,26 @@
 version: '3'
 
 services:
+
+  message-queue:
+    image: nats:nanoserver
+    networks:
+      - ms-net
+
+
+
   megastore.web:
     image: megastoreweb
+    environment:
+      - MESSAGE_QUEUE_URL=nats://message-queue:4222
     build:
       context: .
       dockerfile: MegaStore.Web\Dockerfile
+    depends_on:
+      - message-queue
+    networks:
+      - ms-net
+
+
+networks:
+  ms-net:

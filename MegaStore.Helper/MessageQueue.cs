@@ -16,7 +16,7 @@ namespace MegaStore.Helper
 
         public static IConnection CreateConnection()
         {
-            return new ConnectionFactory().CreateConnection("nats://message-queue:4222");
+            return new ConnectionFactory().CreateConnection(Env.MessageQueueUrl);
         }
     }
 }
