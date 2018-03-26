@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using MegaStore.Web.Models;
+using MegaStore.Helper;
 
 namespace MegaStore.Web.Controllers
 {
@@ -12,6 +10,8 @@ namespace MegaStore.Web.Controllers
     {
         public IActionResult Index()
         {
+            CreateSale();
+
             return View();
         }
 
@@ -32,6 +32,23 @@ namespace MegaStore.Web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public void CreateSale()
+        {
+            var sale = new Sale()
+            {
+                CreatedOn = DateTime.Now,
+                Description = "Test"
+            };
+
+            var eventMessage = new SaleCreatedEvent
+            {
+                Sale = sale,
+                CreatedAt = DateTime.UtcNow
+            };
+
+            MessageQueue.Publish(eventMessage);
         }
     }
 }
