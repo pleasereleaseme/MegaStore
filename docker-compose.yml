@@ -7,8 +7,6 @@ services:
     networks:
       - ms-net
 
-
-
   megastore.web:
     image: megastoreweb
     environment:
@@ -21,6 +19,17 @@ services:
     networks:
       - ms-net
 
+  megastore.savesalehandler:
+    image: megastoresavesalehandler
+    environment:
+      - MESSAGE_QUEUE_URL=nats://message-queue:4222
+    build:
+      context: .
+      dockerfile: MegaStore.SaveSaleHandler\Dockerfile
+    depends_on:
+      - message-queue
+    networks:
+      - ms-net
 
 networks:
   ms-net:

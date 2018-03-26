@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaStore.Web", "MegaStore.Web\MegaStore.Web.csproj", "{5D0C819B-0CB5-43D6-9D42-93F9EA960826}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaStore.Web", "MegaStore.Web\MegaStore.Web.csproj", "{5D0C819B-0CB5-43D6-9D42-93F9EA960826}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{62BCF9D7-9DBC-4538-B147-68C4CB08C1BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaStore.Helper", "MegaStore.Helper\MegaStore.Helper.csproj", "{946D55F8-F5C9-4DE6-971C-7A95675AC47C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaStore.Helper", "MegaStore.Helper\MegaStore.Helper.csproj", "{946D55F8-F5C9-4DE6-971C-7A95675AC47C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaStore.SaveSaleHandler", "MegaStore.SaveSaleHandler\MegaStore.SaveSaleHandler.csproj", "{4B8021D1-099F-4504-A342-93C272788C41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{946D55F8-F5C9-4DE6-971C-7A95675AC47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{946D55F8-F5C9-4DE6-971C-7A95675AC47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{946D55F8-F5C9-4DE6-971C-7A95675AC47C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4B8021D1-099F-4504-A342-93C272788C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4B8021D1-099F-4504-A342-93C272788C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4B8021D1-099F-4504-A342-93C272788C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4B8021D1-099F-4504-A342-93C272788C41}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
