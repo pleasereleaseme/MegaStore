@@ -35,7 +35,11 @@ namespace MegaStore.SaveSaleHandler
 
                 var sale = eventMessage.Sale;
 
-                sale.SaleID = 10001;
+                using (var db = new MegaStoreContext())
+                {
+                    db.Sale.Add(sale);
+                    db.SaveChanges();
+                }
 
                 Console.WriteLine($"Sale saved. Sale ID: {sale.SaleID}; event ID: {eventMessage.CorrelationId}");
             }

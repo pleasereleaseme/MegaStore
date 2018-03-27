@@ -4,7 +4,7 @@ namespace MegaStore.Helper
 {
     public class Sale
     {
-        public int SaleID { get; set; }
+        public long SaleID { get; set; }
 
         public DateTime CreatedOn { get; set; }
 
