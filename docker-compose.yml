@@ -3,7 +3,7 @@ version: '3'
 services:
 
   message-queue:
-    image: nats:nanoserver
+    image: nats:linux
     networks:
       - ms-net
 
@@ -14,6 +14,8 @@ services:
     build:
       context: .
       dockerfile: MegaStore.Web\Dockerfile
+    env_file:
+      - db-credentials.env
     depends_on:
       - message-queue
     networks:
@@ -26,6 +28,8 @@ services:
     build:
       context: .
       dockerfile: MegaStore.SaveSaleHandler\Dockerfile
+    env_file:
+      - db-credentials.env
     depends_on:
       - message-queue
     networks:

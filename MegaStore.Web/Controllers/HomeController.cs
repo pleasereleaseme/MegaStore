@@ -3,6 +3,7 @@ using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using MegaStore.Web.Models;
 using MegaStore.Helper;
+using System.Collections.Generic;
 
 namespace MegaStore.Web.Controllers
 {
@@ -39,16 +40,25 @@ namespace MegaStore.Web.Controllers
             var sale = new Sale()
             {
                 CreatedOn = DateTime.Now,
-                Description = "Test"
+                Description = GetProduct()
             };
 
             var eventMessage = new SaleCreatedEvent
             {
                 Sale = sale,
-                CreatedAt = DateTime.UtcNow
+                CreatedAt = DateTime.Now
             };
 
             MessageQueue.Publish(eventMessage);
+        }
+
+        public string GetProduct()
+        {
+            Random rnd = new Random();
+            var products = new List<string> { "Otter Bitter", "Otter Amber", "Otter Bright", "Otter Ale", "Otter Head", "Tarka Pure", "Tarka Four", "Yellow Hammer", "Port Stout", "Firefly Bitter", "Stormstay Ale" };
+            int index = rnd.Next(products.Count);
+
+            return products[index];
         }
     }
 }

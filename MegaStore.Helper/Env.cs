@@ -10,6 +10,8 @@ namespace MegaStore.Helper
 
         public static string MessageQueueUrl { get { return Get("MESSAGE_QUEUE_URL"); } }
 
+        public static string DbConnectionString { get { return Get("DB_CONNECTION_STRING"); } }
+
         private static string Get(string variable)
         {
             if (!_Values.ContainsKey(variable))

@@ -1,7 +1,7 @@
-FROM microsoft/dotnet:2.0-runtime-nanoserver-1709 AS base
+FROM microsoft/dotnet:2.0-runtime AS base
 WORKDIR /app
 
-FROM microsoft/dotnet:2.0-sdk-nanoserver-1709 AS build
+FROM microsoft/dotnet:2.0-sdk AS build
 WORKDIR /src
 COPY MegaStore.sln ./
 COPY MegaStore.SaveSaleHandler/MegaStore.SaveSaleHandler.csproj MegaStore.SaveSaleHandler/
