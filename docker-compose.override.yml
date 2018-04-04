@@ -10,16 +10,25 @@ services:
   megastore.web:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
+      - MESSAGE_QUEUE_URL=nats://message-queue:4222
     env_file:
       - db-credentials.env
     ports:
       - "80"
+    depends_on:
+      - message-queue
+    networks:
+      - ms-net
 
   megastore.savesalehandler:
+    environment:
+      - MESSAGE_QUEUE_URL=nats://message-queue:4222
     env_file:
       - db-credentials.env
+    depends_on:
+      - message-queue
+    networks:
+      - ms-net
 
 networks:
-  default:
-    external:
-      name: nat
+  ms-net:
