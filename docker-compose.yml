@@ -6,10 +6,10 @@ services:
     image: megastoreweb
     build:
       context: .
-      dockerfile: MegaStore.Web\Dockerfile
+      dockerfile: MegaStore.Web/Dockerfile
 
   megastore.savesalehandler:
     image: megastoresavesalehandler
     build:
       context: .
-      dockerfile: MegaStore.SaveSaleHandler\Dockerfile
+      dockerfile: MegaStore.SaveSaleHandler/Dockerfile
