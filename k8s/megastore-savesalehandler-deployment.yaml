@@ -1,0 +1,22 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: megastore-savehandler-deployment
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: megastore-savehandler
+    spec:
+      containers:
+      - name: megastoresavehandler
+        image: prmcr.azurecr.io/megastoresavehandler
+      imagePullSecrets:
+        - name: prmcrauth
