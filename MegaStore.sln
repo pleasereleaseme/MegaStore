@@ -12,6 +12,10 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaStore.SaveSaleHandler", "MegaStore.SaveSaleHandler\MegaStore.SaveSaleHandler.csproj", "{4B8021D1-099F-4504-A342-93C272788C41}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{29601F58-4A34-4B46-B281-537E23E30B1A}"
+	ProjectSection(SolutionItems) = preProject
+		k8s\megastore-web-deployment.yaml = k8s\megastore-web-deployment.yaml
+		k8s\megastore-web-service.yaml = k8s\megastore-web-service.yaml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

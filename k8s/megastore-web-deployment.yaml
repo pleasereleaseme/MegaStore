@@ -1,0 +1,24 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: megastore-web-deployment
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: megastore-web
+    spec:
+      containers:
+      - name: megastoreweb
+        image: prmcr.azurecr.io/megastoreweb
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+        - name: prmcrauth
