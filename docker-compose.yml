@@ -2,11 +2,6 @@ version: '3'
 
 services:
 
-  message-queue:
-    image: nats:linux
-    networks:
-      - ms-net
-
   megastore.web:
     image: megastoreweb
     environment:
