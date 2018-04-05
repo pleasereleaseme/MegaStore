@@ -23,6 +23,11 @@ spec:
             configMapKeyRef:
               name: message.queue
               key: MESSAGE_QUEUE_URL
+        - name: ASPNETCORE_ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: aspnetcore.env
+              key: ASPNETCORE_ENVIRONMENT
         image: prmcr.azurecr.io/megastoreweb
         imagePullPolicy: Always
 
