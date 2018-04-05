@@ -30,7 +30,6 @@ spec:
               key: ASPNETCORE_ENVIRONMENT
         image: prmcr.azurecr.io/megastoreweb
         imagePullPolicy: Always
-
         ports:
         - containerPort: 80
       imagePullSecrets:

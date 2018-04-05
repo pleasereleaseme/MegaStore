@@ -17,6 +17,13 @@ spec:
     spec:
       containers:
       - name: megastoresavehandler
+        env:
+        - name: MESSAGE_QUEUE_URL
+          valueFrom:
+            configMapKeyRef:
+              name: message.queue
+              key: MESSAGE_QUEUE_URL
         image: prmcr.azurecr.io/megastoresavehandler
+		imagePullPolicy: Always
       imagePullSecrets:
         - name: prmcrauth
