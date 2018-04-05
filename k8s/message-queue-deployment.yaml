@@ -20,4 +20,6 @@ spec:
         image: nats:linux
         ports:
         - containerPort: 4222
+		  protocol: TCP
 		- containerPort: 8222
+		  protocol: TCP
