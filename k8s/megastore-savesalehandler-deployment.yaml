@@ -23,6 +23,11 @@ spec:
             configMapKeyRef:
               name: message.queue
               key: MESSAGE_QUEUE_URL
+        - name: DB_CONNECTION_STRING
+          valueFrom:
+            configMapKeyRef:
+              name: db.connection
+              key: DB_CONNECTION_STRING
         image: prmcr.azurecr.io/megastoresavehandler
         imagePullPolicy: Always
       imagePullSecrets:
