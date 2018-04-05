@@ -17,13 +17,15 @@ spec:
     spec:
       containers:
       - name: megastoreweb
-        image: prmcr.azurecr.io/megastoreweb
 		env:
 		- name: MESSAGE_QUEUE_URL
 		  valueFrom:
 		    configMapKeyRef:
 		      name: message.queue
 			  key: MESSAGE_QUEUE_URL
+        image: prmcr.azurecr.io/megastoreweb
+		imagePullPolicy: Always
+
         ports:
         - containerPort: 80
       imagePullSecrets:
