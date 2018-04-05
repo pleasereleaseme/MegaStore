@@ -1,7 +1,7 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: megastore-savehandler-deployment
+  name: megastore-savesalehandler-deployment
 spec:
   replicas: 1
   strategy:
@@ -13,10 +13,10 @@ spec:
   template:
     metadata:
       labels:
-        app: megastore-savehandler
+        app: megastore-savesalehandler
     spec:
       containers:
-      - name: megastoresavehandler
+      - name: megastoresavesalehandler
         env:
         - name: MESSAGE_QUEUE_URL
           valueFrom:
