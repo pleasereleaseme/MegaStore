@@ -13,8 +13,8 @@ namespace MegaStore.Helper
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(conn);
-            //optionsBuilder.UseSqlServer(Env.DbConnectionString);
+            //optionsBuilder.UseSqlServer(conn);
+            optionsBuilder.UseSqlServer(Env.DbConnectionString);
 
         }
 
