@@ -6,5 +6,9 @@ spec:
   selector:
     app: message-queue
   ports:
-  - port: 4222
+  - name: queue
+    protocol: TCP
+    port: 4222
+  - name: diag
+    protocol: TCP
   - port: 8222
