@@ -20,4 +20,8 @@ spec:
         image: nats:linux
         ports:
         - containerPort: 4222
+          name: client
+        - containerPort: 6222
+          name: cluster
         - containerPort: 8222
+          name: monitor

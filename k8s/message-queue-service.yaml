@@ -5,10 +5,11 @@ metadata:
 spec:
   selector:
     app: message-queue
+  type: ClusterIP
   ports:
-  - name: queue
-    protocol: TCP
+  - name: client
     port: 4222
-  - name: diag
-    protocol: TCP
+  - name: cluster
+    port: 6222
+  - name: monitor
     port: 8222
