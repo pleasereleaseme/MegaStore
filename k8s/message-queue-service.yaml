@@ -11,4 +11,4 @@ spec:
     port: 4222
   - name: diag
     protocol: TCP
-  - port: 8222
+    port: 8222
