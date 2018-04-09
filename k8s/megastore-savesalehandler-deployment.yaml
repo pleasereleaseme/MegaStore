@@ -25,7 +25,7 @@ spec:
               key: MESSAGE_QUEUE_URL
         - name: DB_CONNECTION_STRING
           valueFrom:
-            configMapKeyRef:
+            secretKeyRef:
               name: db.connection
               key: DB_CONNECTION_STRING
         image: prmcr.azurecr.io/megastoresavehandler
