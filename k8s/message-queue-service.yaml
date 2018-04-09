@@ -7,3 +7,4 @@ spec:
     app: message-queue
   ports:
   - port: 4222
+  - port: 8222
