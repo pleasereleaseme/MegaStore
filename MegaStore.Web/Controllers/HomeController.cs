@@ -35,6 +35,7 @@ namespace MegaStore.Web.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        // This code is modified from https://github.com/sixeyed/docker-on-windows
         public void CreateSale()
         {
             var sale = new Sale()

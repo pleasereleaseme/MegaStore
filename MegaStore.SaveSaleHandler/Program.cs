@@ -5,6 +5,7 @@ using NATS.Client;
 
 namespace MegaStore.SaveSaleHandler
 {
+    // This code is modified from https://github.com/sixeyed/docker-on-windows
     class Program
     {
         private static ManualResetEvent _ResetEvent = new ManualResetEvent(false);

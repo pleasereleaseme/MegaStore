@@ -2,6 +2,7 @@
 
 namespace MegaStore.Helper
 {
+    // This code is modified from https://github.com/sixeyed/docker-on-windows
     public class SaleCreatedEvent : Message
     {
         public override string Subject { get { return MessageSubject; } }

@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace MegaStore.Helper
-{
+
+{   // This code is modified from https://github.com/sixeyed/docker-on-windows
     public class Env
     {
         private static Dictionary<string, string> _Values = new Dictionary<string, string>();

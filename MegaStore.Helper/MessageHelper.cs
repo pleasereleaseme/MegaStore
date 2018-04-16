@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 
 namespace MegaStore.Helper
 {
+    // This code is modified from https://github.com/sixeyed/docker-on-windows
     public class MessageHelper
     {
         public static byte[] ToData<TMessage>(TMessage message)
