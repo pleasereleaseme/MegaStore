@@ -1,4 +1,4 @@
-version: '3'
+version: '3.5'
 
 services:
 
@@ -12,7 +12,7 @@ services:
       - ASPNETCORE_ENVIRONMENT=Development
       - MESSAGE_QUEUE_URL=nats://message-queue:4222
     ports:
-      - "80"
+      - 80
     depends_on:
       - message-queue
     networks:
