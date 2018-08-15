@@ -5,7 +5,7 @@ FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
 COPY MegaStore.SaveSaleHandler/MegaStore.SaveSaleHandler.csproj MegaStore.SaveSaleHandler/
 COPY MegaStore.Helper/MegaStore.Helper.csproj MegaStore.Helper/
-RUN dotnet restore MegaStore.SaveSaleHandler.csproj
+RUN dotnet restore MegaStore.SaveSaleHandler/MegaStore.SaveSaleHandler.csproj
 COPY . .
 WORKDIR /src/MegaStore.SaveSaleHandler
 RUN dotnet build MegaStore.SaveSaleHandler.csproj -c Release -o /app
