@@ -1,18 +1,17 @@
-FROM microsoft/aspnetcore:2.0 AS base
+FROM microsoft/dotnet:2.1-aspnetcore-runtime AS base
 WORKDIR /app
 EXPOSE 80
 
-FROM microsoft/aspnetcore-build:2.0 AS build
+FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY MegaStore.sln ./
-COPY MegaStore.Web/MegaStore.Web.csproj MegaStore.Web/
-RUN dotnet restore -nowarn:msb3202,nu1503
+COPY ["MegaStore.Web/MegaStore.Web.csproj", "MegaStore.Web/"]
+RUN dotnet restore "MegaStore.Web/MegaStore.Web.csproj"
 COPY . .
-WORKDIR /src/MegaStore.Web
-RUN dotnet build -c Release -o /app
+WORKDIR "/src/MegaStore.Web"
+RUN dotnet build "MegaStore.Web.csproj" -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish -c Release -o /app
+RUN dotnet publish "MegaStore.Web.csproj" -c Release -o /app
 
 FROM base AS final
 WORKDIR /app

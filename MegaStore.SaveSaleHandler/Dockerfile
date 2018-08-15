@@ -1,18 +1,17 @@
-FROM microsoft/dotnet:2.0-runtime AS base
+FROM microsoft/dotnet:2.1-runtime AS base
 WORKDIR /app
 
-FROM microsoft/dotnet:2.0-sdk AS build
+FROM microsoft/dotnet:2.1-sdk AS build
 WORKDIR /src
-COPY MegaStore.sln ./
 COPY MegaStore.SaveSaleHandler/MegaStore.SaveSaleHandler.csproj MegaStore.SaveSaleHandler/
 COPY MegaStore.Helper/MegaStore.Helper.csproj MegaStore.Helper/
-RUN dotnet restore -nowarn:msb3202,nu1503
+RUN dotnet restore MegaStore.SaveSaleHandler.csproj
 COPY . .
 WORKDIR /src/MegaStore.SaveSaleHandler
-RUN dotnet build -c Release -o /app
+RUN dotnet build MegaStore.SaveSaleHandler.csproj -c Release -o /app
 
 FROM build AS publish
-RUN dotnet publish -c Release -o /app
+RUN dotnet publish MegaStore.SaveSaleHandler.csproj -c Release -o /app
 
 FROM base AS final
 WORKDIR /app
