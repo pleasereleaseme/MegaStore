@@ -7,6 +7,7 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using MegaStore.Helper;
 
 namespace MegaStore.Web
 {
@@ -20,6 +21,7 @@ namespace MegaStore.Web
         public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .UseStartup<Startup>()
+                .UseApplicationInsights(Env.AppInsightsInstrumentationKey)
                 .Build();
     }
 }
