@@ -1,10 +1,10 @@
-﻿using System;
-using System.Threading;
-using MegaStore.Helper;
-using NATS.Client;
+﻿using MegaStore.Helper;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
+using NATS.Client;
+using System;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace MegaStore.SaveSaleHandler
 {
