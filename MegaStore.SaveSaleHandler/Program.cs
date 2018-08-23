@@ -18,16 +18,29 @@ namespace MegaStore.SaveSaleHandler
             TelemetryConfiguration.Active.InstrumentationKey = Env.AppInsightsInstrumentationKey;
             TelemetryConfiguration.Active.TelemetryInitializers.Add(new CloudRoleTelemetryInitializer());
 
-            Console.WriteLine($"Connecting to message queue url: {Env.MessageQueueUrl}");
-            using (var connection = MessageQueue.CreateConnection())
-            {
-                var subscription = connection.SubscribeAsync(SaleCreatedEvent.MessageSubject, QUEUE_GROUP);
-                subscription.MessageHandler += SaveSale;
-                subscription.Start();
-                Console.WriteLine($"Listening on subject: {SaleCreatedEvent.MessageSubject}, queue: {QUEUE_GROUP}");
+            TelemetryClient client = new TelemetryClient();
 
-                _ResetEvent.WaitOne();
-                connection.Close();
+            try
+            {
+                client.TrackTrace($"Connecting to message queue url: {Env.MessageQueueUrl}");
+                Console.WriteLine($"Connecting to message queue url: {Env.MessageQueueUrl}");
+                using (var connection = MessageQueue.CreateConnection())
+                {
+                    var subscription = connection.SubscribeAsync(SaleCreatedEvent.MessageSubject, QUEUE_GROUP);
+                    subscription.MessageHandler += SaveSale;
+                    subscription.Start();
+
+                    client.TrackTrace($"Listening on subject: {SaleCreatedEvent.MessageSubject}, queue: {QUEUE_GROUP}");
+                    Console.WriteLine($"Listening on subject: {SaleCreatedEvent.MessageSubject}, queue: {QUEUE_GROUP}");
+
+                    _ResetEvent.WaitOne();
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex}");
+                client.TrackException(ex);
             }
         }
 
@@ -55,7 +68,7 @@ namespace MegaStore.SaveSaleHandler
             catch (Exception ex)
             {
                 Console.WriteLine($"Exception processing event: {ex}");
-                //client.TrackException($"Exception processing event: {ex}");
+                client.TrackException(ex);
             }
         }
     }
