@@ -4,6 +4,7 @@ using MegaStore.Helper;
 using NATS.Client;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
+using System.Collections.Generic;
 
 namespace MegaStore.SaveSaleHandler
 {
@@ -22,16 +23,18 @@ namespace MegaStore.SaveSaleHandler
 
             try
             {
-                client.TrackTrace($"Connecting to message queue url: {Env.MessageQueueUrl}");
-                Console.WriteLine($"Connecting to message queue url: {Env.MessageQueueUrl}");
+                var connectingMsg = $"Connecting to message queue url: {Env.MessageQueueUrl}";
+                client.TrackTrace(connectingMsg);
+                Console.WriteLine(connectingMsg);
                 using (var connection = MessageQueue.CreateConnection())
                 {
                     var subscription = connection.SubscribeAsync(SaleCreatedEvent.MessageSubject, QUEUE_GROUP);
                     subscription.MessageHandler += SaveSale;
                     subscription.Start();
 
-                    client.TrackTrace($"Listening on subject: {SaleCreatedEvent.MessageSubject}, queue: {QUEUE_GROUP}");
-                    Console.WriteLine($"Listening on subject: {SaleCreatedEvent.MessageSubject}, queue: {QUEUE_GROUP}");
+                    var listeningMsg = $"Listening on subject: {SaleCreatedEvent.MessageSubject}, queue: {QUEUE_GROUP}";
+                    client.TrackTrace(listeningMsg);
+                    Console.WriteLine(listeningMsg);
 
                     _ResetEvent.WaitOne();
                     connection.Close();
@@ -39,8 +42,9 @@ namespace MegaStore.SaveSaleHandler
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception: {ex}");
-                client.TrackException(ex);
+                Console.WriteLine($"Exception: {ex} in Main");
+                var method = new Dictionary<string, string> { { "Method", "Main" } };
+                client.TrackException(ex, method);
             }
         }
 
@@ -49,12 +53,14 @@ namespace MegaStore.SaveSaleHandler
             TelemetryClient client = new TelemetryClient();
             try
             {
-                client.TrackTrace($"Received message, subject: {e.Message.Subject}");
-
-                Console.WriteLine($"Received message, subject: {e.Message.Subject}");
+                var receivedMsg = $"Received message, subject: {e.Message.Subject}";
+                client.TrackTrace(receivedMsg);
+                Console.WriteLine(receivedMsg);
                 var eventMessage = MessageHelper.FromData<SaleCreatedEvent>(e.Message.Data);
-                Console.WriteLine($"Saving new sale, created at: {eventMessage.CreatedAt}; event ID: {eventMessage.CorrelationId}");
 
+                var savingMsg = $"Saving new sale, created at: {eventMessage.CreatedAt}; event ID: {eventMessage.CorrelationId}";
+                client.TrackTrace(savingMsg);
+                Console.WriteLine(savingMsg);
                 var sale = eventMessage.Sale;
 
                 using (var db = new MegaStoreContext())
@@ -63,12 +69,15 @@ namespace MegaStore.SaveSaleHandler
                     db.SaveChanges();
                 }
 
-                Console.WriteLine($"Sale saved. Sale ID: {sale.SaleID}; event ID: {eventMessage.CorrelationId}");
+                var savedMsg = $"Sale saved. Sale ID: {sale.SaleID}; event ID: {eventMessage.CorrelationId}";
+                client.TrackTrace(savedMsg);
+                Console.WriteLine(savedMsg);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception processing event: {ex}");
-                client.TrackException(ex);
+                Console.WriteLine($"Exception: {ex} in SaveSale");
+                var method = new Dictionary<string, string> { { "Method", "SaveSale" } };
+                client.TrackException(ex, method);
             }
         }
     }
