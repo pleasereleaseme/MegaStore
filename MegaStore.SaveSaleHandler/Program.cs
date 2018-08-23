@@ -2,6 +2,8 @@
 using System.Threading;
 using MegaStore.Helper;
 using NATS.Client;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Extensibility;
 
 namespace MegaStore.SaveSaleHandler
 {
@@ -13,6 +15,9 @@ namespace MegaStore.SaveSaleHandler
 
         static void Main(string[] args)
         {
+            TelemetryConfiguration.Active.InstrumentationKey = Env.AppInsightsInstrumentationKey;
+            TelemetryConfiguration.Active.TelemetryInitializers.Add(new CloudRoleTelemetryInitializer());
+
             Console.WriteLine($"Connecting to message queue url: {Env.MessageQueueUrl}");
             using (var connection = MessageQueue.CreateConnection())
             {
@@ -28,8 +33,11 @@ namespace MegaStore.SaveSaleHandler
 
         private static void SaveSale(object sender, MsgHandlerEventArgs e)
         {
+            TelemetryClient client = new TelemetryClient();
             try
             {
+                client.TrackTrace($"Received message, subject: {e.Message.Subject}");
+
                 Console.WriteLine($"Received message, subject: {e.Message.Subject}");
                 var eventMessage = MessageHelper.FromData<SaleCreatedEvent>(e.Message.Data);
                 Console.WriteLine($"Saving new sale, created at: {eventMessage.CreatedAt}; event ID: {eventMessage.CorrelationId}");
@@ -47,6 +55,7 @@ namespace MegaStore.SaveSaleHandler
             catch (Exception ex)
             {
                 Console.WriteLine($"Exception processing event: {ex}");
+                //client.TrackException($"Exception processing event: {ex}");
             }
         }
     }

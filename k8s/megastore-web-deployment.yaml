@@ -28,6 +28,11 @@ spec:
             configMapKeyRef:
               name: aspnetcore.env
               key: ASPNETCORE_ENVIRONMENT
+        - name: APP_INSIGHTS_INSTRUMENTATION_KEY
+          valueFrom:
+            configMapKeyRef:
+              name: appinsights.env
+              key: APP_INSIGHTS_INSTRUMENTATION_KEY
         image: prmcr.azurecr.io/megastoreweb
         imagePullPolicy: Always
         ports:
