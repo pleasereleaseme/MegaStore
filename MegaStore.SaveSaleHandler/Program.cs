@@ -13,20 +13,16 @@ namespace MegaStore.SaveSaleHandler
     class Program
     {
         private static ManualResetEvent _ResetEvent = new ManualResetEvent(false);
+        private static readonly TelemetryConfiguration configuration = new TelemetryConfiguration(Env.AppInsightsInstrumentationKey);
+
         private const string QUEUE_GROUP = "save-sale-handler";
 
         static void Main(string[] args)
         {
-
-            TelemetryConfiguration configuration = new TelemetryConfiguration(Env.AppInsightsInstrumentationKey);
             configuration.TelemetryInitializers.Add(new CloudRoleTelemetryInitializer());
             KubernetesModule.EnableKubernetes(configuration);
-
-            //TelemetryConfiguration.Active.InstrumentationKey = Env.AppInsightsInstrumentationKey;
-            //TelemetryConfiguration.Active.TelemetryInitializers.Add(new CloudRoleTelemetryInitializer());
-
-            TelemetryClient client = new TelemetryClient();
-                    
+            
+            TelemetryClient client = new TelemetryClient(configuration);        
             try
             {
                 var connectingMsg = $"Connecting to message queue url: {Env.MessageQueueUrl}";
@@ -56,7 +52,7 @@ namespace MegaStore.SaveSaleHandler
 
         private static void SaveSale(object sender, MsgHandlerEventArgs e)
         {
-            TelemetryClient client = new TelemetryClient();
+            TelemetryClient client = new TelemetryClient(configuration);
             try
             {
                 var receivedMsg = $"Received message, subject: {e.Message.Subject}";
