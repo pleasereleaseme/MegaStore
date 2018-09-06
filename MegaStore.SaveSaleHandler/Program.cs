@@ -5,6 +5,7 @@ using NATS.Client;
 using System;
 using System.Collections.Generic;
 using System.Threading;
+using Microsoft.ApplicationInsights.Kubernetes;
 
 namespace MegaStore.SaveSaleHandler
 {
@@ -16,11 +17,16 @@ namespace MegaStore.SaveSaleHandler
 
         static void Main(string[] args)
         {
-            TelemetryConfiguration.Active.InstrumentationKey = Env.AppInsightsInstrumentationKey;
-            TelemetryConfiguration.Active.TelemetryInitializers.Add(new CloudRoleTelemetryInitializer());
+
+            TelemetryConfiguration configuration = new TelemetryConfiguration(Env.AppInsightsInstrumentationKey);
+            configuration.TelemetryInitializers.Add(new CloudRoleTelemetryInitializer());
+            KubernetesModule.EnableKubernetes(configuration);
+
+            //TelemetryConfiguration.Active.InstrumentationKey = Env.AppInsightsInstrumentationKey;
+            //TelemetryConfiguration.Active.TelemetryInitializers.Add(new CloudRoleTelemetryInitializer());
 
             TelemetryClient client = new TelemetryClient();
-
+                    
             try
             {
                 var connectingMsg = $"Connecting to message queue url: {Env.MessageQueueUrl}";

@@ -9,6 +9,5 @@ namespace MegaStore.Web
         {
             telemetry.Context.Cloud.RoleName = "MegaStore.Web";
         }
-
     }
 }
