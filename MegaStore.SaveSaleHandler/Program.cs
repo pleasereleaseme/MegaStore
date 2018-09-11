@@ -1,11 +1,11 @@
 ﻿using MegaStore.Helper;
 using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.Kubernetes;
 using NATS.Client;
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.ApplicationInsights.Kubernetes;
 
 namespace MegaStore.SaveSaleHandler
 {
@@ -13,7 +13,7 @@ namespace MegaStore.SaveSaleHandler
     class Program
     {
         private static ManualResetEvent _ResetEvent = new ManualResetEvent(false);
-        private static readonly TelemetryConfiguration configuration = new TelemetryConfiguration(Env.AppInsightsInstrumentationKey);
+        private static TelemetryConfiguration configuration = new TelemetryConfiguration(Env.AppInsightsInstrumentationKey);
 
         private const string QUEUE_GROUP = "save-sale-handler";
 
