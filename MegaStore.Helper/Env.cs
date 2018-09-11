@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace MegaStore.Helper
 
@@ -12,6 +11,8 @@ namespace MegaStore.Helper
         public static string MessageQueueUrl { get { return Get("MESSAGE_QUEUE_URL"); } }
 
         public static string DbConnectionString { get { return Get("DB_CONNECTION_STRING"); } }
+
+        public static string AppInsightsInstrumentationKey { get { return Get("APP_INSIGHTS_INSTRUMENTATION_KEY"); } }
 
         private static string Get(string variable)
         {

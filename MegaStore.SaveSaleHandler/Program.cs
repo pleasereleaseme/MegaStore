@@ -1,7 +1,11 @@
-﻿using System;
-using System.Threading;
-using MegaStore.Helper;
+﻿using MegaStore.Helper;
+using Microsoft.ApplicationInsights;
+using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.ApplicationInsights.Kubernetes;
 using NATS.Client;
+using System;
+using System.Collections.Generic;
+using System.Threading;
 
 namespace MegaStore.SaveSaleHandler
 {
@@ -9,31 +13,56 @@ namespace MegaStore.SaveSaleHandler
     class Program
     {
         private static ManualResetEvent _ResetEvent = new ManualResetEvent(false);
+        private static TelemetryConfiguration configuration = new TelemetryConfiguration(Env.AppInsightsInstrumentationKey);
+
         private const string QUEUE_GROUP = "save-sale-handler";
 
         static void Main(string[] args)
         {
-            Console.WriteLine($"Connecting to message queue url: {Env.MessageQueueUrl}");
-            using (var connection = MessageQueue.CreateConnection())
+            configuration.TelemetryInitializers.Add(new CloudRoleTelemetryInitializer());
+            KubernetesModule.EnableKubernetes(configuration);
+            
+            TelemetryClient client = new TelemetryClient(configuration);        
+            try
             {
-                var subscription = connection.SubscribeAsync(SaleCreatedEvent.MessageSubject, QUEUE_GROUP);
-                subscription.MessageHandler += SaveSale;
-                subscription.Start();
-                Console.WriteLine($"Listening on subject: {SaleCreatedEvent.MessageSubject}, queue: {QUEUE_GROUP}");
+                var connectingMsg = $"Connecting to message queue url: {Env.MessageQueueUrl}";
+                client.TrackTrace(connectingMsg);
+                Console.WriteLine(connectingMsg);
+                using (var connection = MessageQueue.CreateConnection())
+                {
+                    var subscription = connection.SubscribeAsync(SaleCreatedEvent.MessageSubject, QUEUE_GROUP);
+                    subscription.MessageHandler += SaveSale;
+                    subscription.Start();
 
-                _ResetEvent.WaitOne();
-                connection.Close();
+                    var listeningMsg = $"Listening on subject: {SaleCreatedEvent.MessageSubject}, queue: {QUEUE_GROUP}";
+                    client.TrackTrace(listeningMsg);
+                    Console.WriteLine(listeningMsg);
+
+                    _ResetEvent.WaitOne();
+                    connection.Close();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception: {ex} in Main");
+                var method = new Dictionary<string, string> { { "Method", "Main" } };
+                client.TrackException(ex, method);
             }
         }
 
         private static void SaveSale(object sender, MsgHandlerEventArgs e)
         {
+            TelemetryClient client = new TelemetryClient(configuration);
             try
             {
-                Console.WriteLine($"Received message, subject: {e.Message.Subject}");
+                var receivedMsg = $"Received message, subject: {e.Message.Subject}";
+                client.TrackTrace(receivedMsg);
+                Console.WriteLine(receivedMsg);
                 var eventMessage = MessageHelper.FromData<SaleCreatedEvent>(e.Message.Data);
-                Console.WriteLine($"Saving new sale, created at: {eventMessage.CreatedAt}; event ID: {eventMessage.CorrelationId}");
 
+                var savingMsg = $"Saving new sale, created at: {eventMessage.CreatedAt}; event ID: {eventMessage.CorrelationId}";
+                client.TrackTrace(savingMsg);
+                Console.WriteLine(savingMsg);
                 var sale = eventMessage.Sale;
 
                 using (var db = new MegaStoreContext())
@@ -42,11 +71,15 @@ namespace MegaStore.SaveSaleHandler
                     db.SaveChanges();
                 }
 
-                Console.WriteLine($"Sale saved. Sale ID: {sale.SaleID}; event ID: {eventMessage.CorrelationId}");
+                var savedMsg = $"Sale saved. Sale ID: {sale.SaleID}; event ID: {eventMessage.CorrelationId}";
+                client.TrackTrace(savedMsg);
+                Console.WriteLine(savedMsg);
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception processing event: {ex}");
+                Console.WriteLine($"Exception: {ex} in SaveSale");
+                var method = new Dictionary<string, string> { { "Method", "SaveSale" } };
+                client.TrackException(ex, method);
             }
         }
     }
