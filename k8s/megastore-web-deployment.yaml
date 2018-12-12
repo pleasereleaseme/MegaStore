@@ -33,7 +33,7 @@ spec:
             configMapKeyRef:
               name: appinsights.env
               key: APP_INSIGHTS_INSTRUMENTATION_KEY
-        image: prmcr.azurecr.io/megastoreweb
+        image: prmcontainerregistry.azurecr.io/megastoreweb
         imagePullPolicy: Always
         ports:
         - containerPort: 80
