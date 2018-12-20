@@ -33,7 +33,7 @@ spec:
             configMapKeyRef:
               name: appinsights.env
               key: APP_INSIGHTS_INSTRUMENTATION_KEY
-        image: prmcontainerregistry.azurecr.io/megastoresavehandler
+        image: prmcontainerregistry.azurecr.io/megastoresavesalehandler
         imagePullPolicy: Always
       imagePullSecrets:
         - name: prmcrauth

@@ -1,0 +1,3 @@
+kubectl --kubeconfig $(Agent.TempDirectory)/config set image deployment/megastore-web-deployment megastoreweb=$(AcrName).azurecr.io/megastoreweb:$(Build.BuildNumber) --namespace=$(DatEnvironment)
+
+kubectl --kubeconfig $(Agent.TempDirectory)/config set image deployment/megastore-savesalehandler-deployment megastoresavesalehandler=$(AcrName).azurecr.io/megastoresavesalehandler:$(Build.BuildNumber) --namespace=$(DatEnvironment)
