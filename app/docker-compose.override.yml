@@ -11,7 +11,7 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - MESSAGE_QUEUE_URL=nats://message-queue:4222
-      - APP_INSIGHTS_INSTRUMENTATION_KEY=e736cb0e-def3-4b60-bb03-a22d4a6465ea
+      - APP_INSIGHTS_INSTRUMENTATION_KEY=c0a3540c-8804-4d7f-a6e7-c5750c49777c
     ports:
       - 80
     depends_on:
@@ -22,7 +22,7 @@ services:
   megastore.savesalehandler:
     environment:
       - MESSAGE_QUEUE_URL=nats://message-queue:4222
-      - APP_INSIGHTS_INSTRUMENTATION_KEY=e736cb0e-def3-4b60-bb03-a22d4a6465ea
+      - APP_INSIGHTS_INSTRUMENTATION_KEY=c0a3540c-8804-4d7f-a6e7-c5750c49777c
     env_file:
       - db-credentials.env
     depends_on:
