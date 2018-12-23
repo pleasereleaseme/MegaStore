@@ -1,7 +1,8 @@
 #!/bin/bash
 ENVIRONMENT=$1
-APPINSIGHTSINSTRUMENTATIONKEY=$2
-DBCONN=$3
+ACRPASSWORD=$2
+APPINSIGHTSINSTRUMENTATIONKEY=$3
+DBCONN=$4
 
 # container registry credentials
 kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config create secret docker-registry $ACRAUTHENTICATIONSECRETNAME --namespace=$ENVIRONMENT --docker-server=$ACRNAME.azurecr.io --docker-username=$ACRNAME --docker-password=$ACRPASSWORD --dry-run -o yaml |  kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f -
