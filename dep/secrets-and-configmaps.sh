@@ -1,9 +1,13 @@
 #!/bin/bash
 ENV=$1
 AIKEY=$2
+ACRPWD=$3
+DBPWD=$4
 
 echo "ENV is $ENV"
 echo "AIKEY is $AIKEY"
+echo "DBPWD is $DBPWD"
+echo "ACRPWD is $ACRPWD"
 
 # container registry credentials
 kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config create secret docker-registry $ACRAUTHENTICATIONSECRETNAME --namespace=$ENV --docker-server=$ACRNAME.azurecr.io --docker-username=$ACRNAME --docker-password=$ACRPWD --dry-run -o yaml |  kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f -
