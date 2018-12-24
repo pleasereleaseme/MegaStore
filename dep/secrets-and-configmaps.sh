@@ -1,7 +1,7 @@
 #!/bin/bash
 ENV=$1
-ACRPWD=$2
-AIKEY=$3
+AIKEY=$2
+ACRPWD=$3
 DBPWD=$4
 
 echo "ENV is $ENV"
