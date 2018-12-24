@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: megastore-web-deployment
 spec:
-  replicas: 10
+  replicas: 1
   strategy:
     type: RollingUpdate
     rollingUpdate:
