@@ -1,4 +1,5 @@
 #!/bin/bash
-ENVIRONMENT=$1
+PATH=$1
+ENV=$2
 
-kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f k8sbuild/k8s-config/namespace-$ENVIRONMENT.yaml
+kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f $PATH/namespace-$ENV.yaml
