@@ -60,7 +60,7 @@ namespace MegaStore.SaveSaleHandler
                 Console.WriteLine(receivedMsg);
                 var eventMessage = MessageHelper.FromData<SaleCreatedEvent>(e.Message.Data);
 
-                var savingMsg = $"Saving new sale, created at: {eventMessage.CreatedAt}; event ID: {eventMessage.CorrelationId}";
+                var savingMsg = $"Saving new sale, created at: {eventMessage.CreatedAt}; event ID: {eventMessage.CorrelationId}, on host {Environment.MachineName}";
                 client.TrackTrace(savingMsg);
                 Console.WriteLine(savingMsg);
                 var sale = eventMessage.Sale;

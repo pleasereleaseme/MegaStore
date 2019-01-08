@@ -18,7 +18,7 @@ namespace MegaStore.Web.Controllers
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
+            ViewData["Message"] = $"Your application description page. Running on {Environment.MachineName}";
 
             return View();
         }
