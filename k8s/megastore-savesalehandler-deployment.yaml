@@ -35,5 +35,12 @@ spec:
               key: APP_INSIGHTS_INSTRUMENTATION_KEY
         image: prmcontainerregistry.azurecr.io/megastoresavesalehandler
         imagePullPolicy: Always
+        resources:
+          requests:
+            cpu: 100m
+            memory: 128Mi
+          limits:
+            cpu: 250m
+            memory: 256Mi          
       imagePullSecrets:
         - name: prmcrauth
