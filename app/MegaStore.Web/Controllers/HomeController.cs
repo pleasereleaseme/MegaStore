@@ -41,7 +41,8 @@ namespace MegaStore.Web.Controllers
             var sale = new Sale()
             {
                 CreatedOn = DateTime.Now,
-                Description = GetProduct() + $" {Environment.MachineName}"
+                //Description = GetProduct()
+                Description = $" {Environment.MachineName}"
             };
 
             var eventMessage = new SaleCreatedEvent
