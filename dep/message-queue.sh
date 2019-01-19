@@ -1,8 +1,10 @@
-CONFIGPATH=$1
-ENV=$2
+#!/bin/bash
+
+echo "PATH is $K8SCONFIGPATH"
+echo "ENV is $ENV"
 
 # service
-kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f $CONFIGPATH/message-queue-service.yaml --namespace=$ENV
+kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f $K8SCONFIGPATH/message-queue-service.yaml --namespace=$ENV
 
 # deployment
-kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f $CONFIGPATH/message-queue-deployment.yaml --namespace=$ENV
+kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f $K8SCONFIGPATH/message-queue-deployment.yaml --namespace=$ENV
