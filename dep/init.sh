@@ -1,4 +1,5 @@
 #!/bin/bash
+ACRPWD=$1
 
 echo "PATH is $K8SCONFIGPATH"
 echo "ENV is $ENV"
