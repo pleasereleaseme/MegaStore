@@ -2,6 +2,7 @@
 
 echo "PATH is $K8SCONFIGPATH"
 echo "ENV is $ENV"
+echo "ACRNAME is $ACRNAME"
 echo "TAG is $BUILD_BUILDNUMBER"
 
 # ASPNETCORE_ENV configmap
