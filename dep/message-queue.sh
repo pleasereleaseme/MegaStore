@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "PATH is $K8SCONFIGPATH"
-echo "RELEASE_ENVIRONMENTNAMEV is $RELEASE_ENVIRONMENTNAME"
+echo "RELEASE_ENVIRONMENTNAME is $RELEASE_ENVIRONMENTNAME"
 
 # service
 kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f $K8SCONFIGPATH/message-queue-service.yaml --namespace=$RELEASE_ENVIRONMENTNAME
