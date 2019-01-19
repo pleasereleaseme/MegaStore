@@ -3,7 +3,7 @@
 echo "PATH is $K8SCONFIGPATH"
 echo "ENV is $ENV"
 echo "ACRNAME is $ACRNAME"
-echo "TAG is $BUILD_BUILDNUMBER"
+echo "BUILD_BUILDNUMBER is $BUILD_BUILDNUMBER"
 
 # ASPNETCORE_ENV configmap
 kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config create configmap aspnetcore.env --from-literal=ASPNETCORE_ENVIRONMENT=$ENV --namespace=$ENV --dry-run -o yaml |  kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f -
