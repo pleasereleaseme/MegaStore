@@ -18,4 +18,4 @@ kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config create secret docker-registry $
 kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config create configmap message.queue --from-literal=MESSAGE_QUEUE_URL=nats://message-queue-service.$RELEASE_ENVIRONMENTNAME:4222 --namespace=$RELEASE_ENVIRONMENTNAME --dry-run -o yaml |  kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f -
 
 # APP_INSIGHTS_INSTRUMENTATION_KEY configmap
-kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config create configmap appinsights.RELEASE_ENVIRONMENTNAME --from-literal=APP_INSIGHTS_INSTRUMENTATION_KEY=$APPINSIGHTSINSTRUMENTATIONKEY --namespace=$RELEASE_ENVIRONMENTNAME --dry-run -o yaml |  kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f -
+kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config create configmap appinsights.env --from-literal=APP_INSIGHTS_INSTRUMENTATION_KEY=$APPINSIGHTSINSTRUMENTATIONKEY --namespace=$RELEASE_ENVIRONMENTNAME --dry-run -o yaml |  kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f -
