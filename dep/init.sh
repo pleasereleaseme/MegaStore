@@ -1,10 +1,11 @@
 #!/bin/bash
 CONFIGPATH=$1
-ENV=$2
-ACRPWD=$3
-AIKEY=$4
+#ENV=$2
+ACRPWD=$2
+AIKEY=$3
 
 echo "PATH is $CONFIGPATH"
+echo "ENV is $ENV"
 
 # namespace
 kubectl --kubeconfig $AGENT_TEMPDIRECTORY/config apply -f $CONFIGPATH/namespace-$ENV.yaml
