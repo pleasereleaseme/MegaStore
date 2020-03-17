@@ -9,7 +9,6 @@ using System.Threading;
 
 namespace MegaStore.SaveSaleHandler
 {
-    // This code is modified from https://github.com/sixeyed/docker-on-windows
     class Program
     {
         private static ManualResetEvent _ResetEvent = new ManualResetEvent(false);
@@ -20,9 +19,9 @@ namespace MegaStore.SaveSaleHandler
         static void Main(string[] args)
         {
             configuration.TelemetryInitializers.Add(new CloudRoleTelemetryInitializer());
-            KubernetesModule.EnableKubernetes(configuration);
-            
-            TelemetryClient client = new TelemetryClient(configuration);        
+            //KubernetesModule.EnableKubernetes(configuration);
+
+            TelemetryClient client = new TelemetryClient(configuration);
             try
             {
                 var connectingMsg = $"Connecting to message queue url: {Env.MessageQueueUrl}";
@@ -48,8 +47,8 @@ namespace MegaStore.SaveSaleHandler
                 var method = new Dictionary<string, string> { { "Method", "Main" } };
                 client.TrackException(ex, method);
             }
-        }
 
+        }
         private static void SaveSale(object sender, MsgHandlerEventArgs e)
         {
             TelemetryClient client = new TelemetryClient(configuration);

@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27428.2002
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29905.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaStore.Web", "MegaStore.Web\MegaStore.Web.csproj", "{5D0C819B-0CB5-43D6-9D42-93F9EA960826}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaStore.Web", "MegaStore.Web\MegaStore.Web.csproj", "{F96ECE33-4898-47F6-B048-A9F66C7D666A}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{62BCF9D7-9DBC-4538-B147-68C4CB08C1BE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaStore.SaveSaleHandler", "MegaStore.SaveSaleHandler\MegaStore.SaveSaleHandler.csproj", "{9B3A1671-7BB9-4C90-8473-DA813198D5FC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaStore.Helper", "MegaStore.Helper\MegaStore.Helper.csproj", "{946D55F8-F5C9-4DE6-971C-7A95675AC47C}"
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{19CACF79-01EE-4C67-83E1-B57A235C9668}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MegaStore.SaveSaleHandler", "MegaStore.SaveSaleHandler\MegaStore.SaveSaleHandler.csproj", "{4B8021D1-099F-4504-A342-93C272788C41}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MegaStore.Helper", "MegaStore.Helper\MegaStore.Helper.csproj", "{59EEF34E-E0F1-43B3-B3E2-A5491034F95D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,27 +17,27 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{5D0C819B-0CB5-43D6-9D42-93F9EA960826}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5D0C819B-0CB5-43D6-9D42-93F9EA960826}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5D0C819B-0CB5-43D6-9D42-93F9EA960826}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5D0C819B-0CB5-43D6-9D42-93F9EA960826}.Release|Any CPU.Build.0 = Release|Any CPU
-		{62BCF9D7-9DBC-4538-B147-68C4CB08C1BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{62BCF9D7-9DBC-4538-B147-68C4CB08C1BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{62BCF9D7-9DBC-4538-B147-68C4CB08C1BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{62BCF9D7-9DBC-4538-B147-68C4CB08C1BE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{946D55F8-F5C9-4DE6-971C-7A95675AC47C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{946D55F8-F5C9-4DE6-971C-7A95675AC47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{946D55F8-F5C9-4DE6-971C-7A95675AC47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{946D55F8-F5C9-4DE6-971C-7A95675AC47C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4B8021D1-099F-4504-A342-93C272788C41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4B8021D1-099F-4504-A342-93C272788C41}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4B8021D1-099F-4504-A342-93C272788C41}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4B8021D1-099F-4504-A342-93C272788C41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F96ECE33-4898-47F6-B048-A9F66C7D666A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F96ECE33-4898-47F6-B048-A9F66C7D666A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F96ECE33-4898-47F6-B048-A9F66C7D666A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F96ECE33-4898-47F6-B048-A9F66C7D666A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B3A1671-7BB9-4C90-8473-DA813198D5FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B3A1671-7BB9-4C90-8473-DA813198D5FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B3A1671-7BB9-4C90-8473-DA813198D5FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B3A1671-7BB9-4C90-8473-DA813198D5FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19CACF79-01EE-4C67-83E1-B57A235C9668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19CACF79-01EE-4C67-83E1-B57A235C9668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19CACF79-01EE-4C67-83E1-B57A235C9668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19CACF79-01EE-4C67-83E1-B57A235C9668}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59EEF34E-E0F1-43B3-B3E2-A5491034F95D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59EEF34E-E0F1-43B3-B3E2-A5491034F95D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59EEF34E-E0F1-43B3-B3E2-A5491034F95D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59EEF34E-E0F1-43B3-B3E2-A5491034F95D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {258C8290-7153-4434-B3F4-A0E376937287}
+		SolutionGuid = {7824ED36-DFA5-4C61-92EB-F42F08549349}
 	EndGlobalSection
 EndGlobal
