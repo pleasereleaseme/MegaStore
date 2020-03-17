@@ -21,8 +21,8 @@ namespace MegaStore.Web
         {
             services.AddControllersWithViews();
 
-            //services.AddApplicationInsightsTelemetry();
-            //services.EnableKubernetes();
+            services.AddApplicationInsightsTelemetry();
+            services.AddApplicationInsightsKubernetesEnricher();
             services.AddMvc();
             services.AddSingleton<ITelemetryInitializer, CloudRoleTelemetryInitializer>();
         }
